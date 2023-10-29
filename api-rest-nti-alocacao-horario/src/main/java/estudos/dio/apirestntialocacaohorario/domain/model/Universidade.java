@@ -12,6 +12,9 @@ public class Universidade {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Curso> cursos;
 
+    public Universidade() {
+    }
+
     public Long getId() {
         return id;
     }

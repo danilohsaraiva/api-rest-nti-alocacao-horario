@@ -1,5 +1,6 @@
 package estudos.dio.apirestntialocacaohorario.domain.controller;
 
+import estudos.dio.apirestntialocacaohorario.domain.dtos.UniversidadeDto;
 import estudos.dio.apirestntialocacaohorario.domain.model.Universidade;
 import estudos.dio.apirestntialocacaohorario.domain.service.UniversidadeService;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +23,10 @@ public class UniversidadeController {
     }
 
     @PostMapping
-    public ResponseEntity<Universidade> create (@RequestBody Universidade universidade) {
-        var universidadeParaCriar = universidadeService.create(universidade);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(universidade.getId()).toUri();
+    public ResponseEntity<Universidade> create (@RequestBody UniversidadeDto universidadeDto) {
+
+        var universidadeParaCriar = universidadeService.create(universidadeDto.toModel());
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(universidadeParaCriar.getId()).toUri();
         return ResponseEntity.created(location).body(universidadeParaCriar);
     }
 }

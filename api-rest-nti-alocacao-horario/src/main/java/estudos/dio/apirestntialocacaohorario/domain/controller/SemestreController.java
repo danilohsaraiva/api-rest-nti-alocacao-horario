@@ -1,5 +1,6 @@
 package estudos.dio.apirestntialocacaohorario.domain.controller;
 
+import estudos.dio.apirestntialocacaohorario.domain.dtos.SemestreDto;
 import estudos.dio.apirestntialocacaohorario.domain.model.Semestre;
 import estudos.dio.apirestntialocacaohorario.domain.service.SemestreService;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,11 @@ public class SemestreController {
     }
 
     @PostMapping
-    public ResponseEntity<Semestre> create(@RequestBody Semestre semestre) {
-        var semestreParaCriar = semestreService.create(semestre);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(semestre.getId()).toUri();
+    public ResponseEntity<Semestre> create(@RequestBody SemestreDto semestreDto) {
+
+        var semestreParaCriar = semestreDto.toModel();
+        semestreService.create(semestreParaCriar);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(semestreParaCriar.getId()).toUri();
         return ResponseEntity.created(location).body(semestreParaCriar);
     }
 

@@ -14,6 +14,10 @@ public class PreferenciaGrade {
     @ElementCollection
     private List<String> horariosPreferiveis = new ArrayList<>();
 
+    public PreferenciaGrade() {
+
+    }
+
     public Long getId() {
         return id;
     }

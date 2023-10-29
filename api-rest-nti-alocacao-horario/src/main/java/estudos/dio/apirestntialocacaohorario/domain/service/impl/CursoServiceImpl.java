@@ -23,8 +23,8 @@ public class CursoServiceImpl implements CursoService {
 
     @Override
     public Curso create(Curso cursoParaCriar) {
-        if(cursoParaCriar.getId()!= null && cursoRepositorio.existsById(cursoParaCriar.getId())){
-            throw new IllegalArgumentException("ID já existe!");
+        if((cursoParaCriar.getId()!= null && cursoRepositorio.existsById(cursoParaCriar.getId()))){
+            throw new IllegalArgumentException("Id já existe");
         }
         Curso cursoCriado = cursoRepositorio.save(cursoParaCriar);
         return cursoCriado;
@@ -40,4 +40,10 @@ public class CursoServiceImpl implements CursoService {
         cursoRepositorio.delete(dbCurso);
         return dbCurso;
     }
+
+    public Curso findByNome(String nome) {
+        Curso curso = cursoRepositorio.findByNome(nome);
+        return  curso;
+    }
+
 }

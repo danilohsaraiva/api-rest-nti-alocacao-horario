@@ -1,5 +1,6 @@
 package estudos.dio.apirestntialocacaohorario.domain.model;
 
+import estudos.dio.apirestntialocacaohorario.domain.dtos.CursoDto;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -8,9 +9,13 @@ public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     String nome;
     @OneToMany(cascade = CascadeType.ALL)
     List<Semestre> semestres;
+    public Curso() {
+
+    }
 
     public Long getId() {
         return id;

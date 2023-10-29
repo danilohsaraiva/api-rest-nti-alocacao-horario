@@ -15,6 +15,9 @@ public class Disciplina {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Professor> professores;
 
+    public Disciplina() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -46,5 +49,4 @@ public class Disciplina {
     public void setProfessores(List<Professor> professores) {
         this.professores = professores;
     }
-
 }

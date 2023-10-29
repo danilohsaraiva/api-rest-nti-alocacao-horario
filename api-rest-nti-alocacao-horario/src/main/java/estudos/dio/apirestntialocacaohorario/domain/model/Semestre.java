@@ -14,6 +14,9 @@ public class Semestre {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Disciplina> disciplinas;
 
+    public Semestre() {
+    }
+
     public Long getId() {
         return id;
     }

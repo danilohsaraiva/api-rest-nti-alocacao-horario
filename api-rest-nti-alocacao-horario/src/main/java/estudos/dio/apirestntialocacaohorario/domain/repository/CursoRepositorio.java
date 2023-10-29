@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface CursoRepositorio extends JpaRepository<Curso, Long> {
     public List<Curso> findAll();
+
+    public Curso findByNome(String nome);
+
+    public boolean existsByNome(String nome);
 }

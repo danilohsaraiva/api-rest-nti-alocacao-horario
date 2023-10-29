@@ -10,4 +10,7 @@ public interface CursoService {
     Curso create(Curso cursoParaCriar);
 
     List<Curso> findAll();
+
+    Curso findByNome(String nome);
+
 }

@@ -1,5 +1,6 @@
 package estudos.dio.apirestntialocacaohorario.domain.controller;
 
+import estudos.dio.apirestntialocacaohorario.domain.dtos.PreferenciaGradeDto;
 import estudos.dio.apirestntialocacaohorario.domain.model.PreferenciaGrade;
 import estudos.dio.apirestntialocacaohorario.domain.service.PreferenciaGradeService;
 import org.springframework.http.ResponseEntity;
@@ -10,17 +11,18 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/preferencia-grade")
-public class PreferenciaGradeParaController {
+public class PreferenciaGradeController {
     private final PreferenciaGradeService preferenciaGradeService;
 
-    public PreferenciaGradeParaController(PreferenciaGradeService preferenciaGradeService) {
+    public PreferenciaGradeController(PreferenciaGradeService preferenciaGradeService) {
         this.preferenciaGradeService = preferenciaGradeService;
     }
 
     @PostMapping
-    public ResponseEntity<PreferenciaGrade> create(@RequestBody PreferenciaGrade preferenciaGrade) {
-        var preferenciaParaCriar = preferenciaGradeService.create(preferenciaGrade);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(preferenciaGrade).toUri();
+    public ResponseEntity<PreferenciaGrade> create(@RequestBody PreferenciaGradeDto preferenciaGradeDto) {
+
+        var preferenciaParaCriar = preferenciaGradeService.create(preferenciaGradeDto.toModel());
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(preferenciaParaCriar).toUri();
         return ResponseEntity.created(location).body(preferenciaParaCriar);
     }
 

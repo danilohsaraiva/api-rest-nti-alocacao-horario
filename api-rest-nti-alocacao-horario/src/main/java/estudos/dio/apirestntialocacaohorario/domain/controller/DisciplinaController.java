@@ -1,5 +1,6 @@
 package estudos.dio.apirestntialocacaohorario.domain.controller;
 
+import estudos.dio.apirestntialocacaohorario.domain.dtos.DisciplinaDto;
 import estudos.dio.apirestntialocacaohorario.domain.model.Disciplina;
 import estudos.dio.apirestntialocacaohorario.domain.service.DisciplinaService;
 import estudos.dio.apirestntialocacaohorario.domain.service.impl.DisciplinaServiceImpl;
@@ -22,9 +23,12 @@ public class DisciplinaController {
     }
 
     @PostMapping()
-    public ResponseEntity<Disciplina> create(@RequestBody Disciplina disciplina) {
-        var disciplinaParaCriar = disciplinaService.create(disciplina);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(disciplina.getId()).toUri();
+    public ResponseEntity<Disciplina> create(@RequestBody DisciplinaDto disciplinaDto) {
+
+        Disciplina disciplinaParaCriar = disciplinaService.create(disciplinaDto.toModel());
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(disciplinaParaCriar.getId()).toUri();
+
         return ResponseEntity.created(location).body(disciplinaParaCriar);
     }
 }

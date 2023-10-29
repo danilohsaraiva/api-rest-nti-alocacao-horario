@@ -12,8 +12,11 @@ public class Professor {
     private String nome;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Disciplina> disciplinas;
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<PreferenciaGrade> preferencias;
+
+    public Professor() {
+    }
 
     public Long getId() {
         return id;
