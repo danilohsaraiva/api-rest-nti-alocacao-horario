@@ -11,8 +11,19 @@ public class Semestre {
     private Long id;
     private int ano;
     private int semestreNumero;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "semestre",cascade = CascadeType.ALL)
     private List<Disciplina> disciplinas;
+    @ManyToOne
+    @JoinColumn(name = "curso_id")
+    private Curso curso;
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
 
     public Semestre() {
     }

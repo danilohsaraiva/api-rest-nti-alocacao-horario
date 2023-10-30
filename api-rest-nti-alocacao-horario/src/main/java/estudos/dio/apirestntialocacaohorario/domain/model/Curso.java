@@ -1,6 +1,7 @@
 package estudos.dio.apirestntialocacaohorario.domain.model;
 
 import estudos.dio.apirestntialocacaohorario.domain.dtos.CursoDto;
+import estudos.dio.apirestntialocacaohorario.domain.dtos.UniversidadeDto;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -9,12 +10,24 @@ public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-
+    @ManyToOne
+    @JoinColumn(name = "universidade_id")
+    public Universidade universidade;
     String nome;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy ="curso", cascade = CascadeType.ALL)
     List<Semestre> semestres;
+
+
     public Curso() {
 
+    }
+
+    public Universidade getUniversidade() {
+        return universidade;
+    }
+
+    public void setUniversidade(Universidade universidade) {
+        this.universidade = universidade;
     }
 
     public Long getId() {

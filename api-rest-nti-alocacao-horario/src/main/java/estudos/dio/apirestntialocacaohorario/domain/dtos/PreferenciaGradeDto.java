@@ -1,13 +1,14 @@
 package estudos.dio.apirestntialocacaohorario.domain.dtos;
 
 import estudos.dio.apirestntialocacaohorario.domain.model.PreferenciaGrade;
+import jakarta.persistence.ElementCollection;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public record PreferenciaGradeDto(String dia, List<String> horariosList) {
+public record PreferenciaGradeDto(String dia,  @ElementCollection List<String> horariosList) {
     public PreferenciaGradeDto(PreferenciaGrade preferenciaGrade) {
         this (
                 preferenciaGrade.getDia(),

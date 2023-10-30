@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public record DisciplinaDto(String nome, int cargaHoraria, List<ProfessorDto> professorList) {
+public record DisciplinaDto(String nomeDisciplina, int cargaHoraria, List<ProfessorDto> professorList) {
 
     public DisciplinaDto(Disciplina disciplina) {
         this(
@@ -20,7 +20,7 @@ public record DisciplinaDto(String nome, int cargaHoraria, List<ProfessorDto> pr
     public Disciplina toModel() {
         Disciplina disciplina = new Disciplina();
 
-        disciplina.setNome(this.nome);
+        disciplina.setNome(this.nomeDisciplina);
         disciplina.setCargaHoraria(this.cargaHoraria);
 
         return disciplina;

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public record CursoDto( String nome,  List<SemestreDto> semestres) {
+public record CursoDto( String nomeCurso,  List<SemestreDto> semestres) {
 
     //@NotBlank e @NotNull
 
@@ -24,7 +24,7 @@ public record CursoDto( String nome,  List<SemestreDto> semestres) {
 
     public Curso toModel() {
         Curso curso = new Curso();
-        curso.setNome(this.nome);
+        curso.setNome(this.nomeCurso);
         curso.setSemestres(Optional.ofNullable(this.semestres).orElse(Collections.emptyList()).stream().map(SemestreDto::toModel).collect(Collectors.toList()));
         return curso;
     }

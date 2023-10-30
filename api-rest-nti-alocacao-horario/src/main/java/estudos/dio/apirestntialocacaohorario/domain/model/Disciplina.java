@@ -12,8 +12,19 @@ public class Disciplina {
     private Long id;
     private String nome;
     private int cargaHoraria;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "disciplinas" ,cascade = CascadeType.ALL)
     private List<Professor> professores;
+    @ManyToOne
+    @JoinColumn(name = "semestre_id")
+    private Semestre semestre;
+
+    public Semestre getSemestre() {
+        return semestre;
+    }
+
+    public void setSemestre(Semestre semestre) {
+        this.semestre = semestre;
+    }
 
     public Disciplina() {
     }

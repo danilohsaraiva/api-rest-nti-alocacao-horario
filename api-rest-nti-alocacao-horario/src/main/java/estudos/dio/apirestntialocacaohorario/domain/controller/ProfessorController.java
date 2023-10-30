@@ -4,6 +4,7 @@ import estudos.dio.apirestntialocacaohorario.domain.dtos.ProfessorDto;
 import estudos.dio.apirestntialocacaohorario.domain.model.Professor;
 import estudos.dio.apirestntialocacaohorario.domain.service.ProfessorService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class ProfessorController {
 
     @PostMapping
     //@PatchMapping atualizar
-    public ResponseEntity<Professor> create(@RequestBody ProfessorDto professorDto) {
+    public ResponseEntity<Professor> create(@RequestBody @Valid ProfessorDto professorDto) {
 
 
         var professorCriado = professorService.create(professorDto.toModel());

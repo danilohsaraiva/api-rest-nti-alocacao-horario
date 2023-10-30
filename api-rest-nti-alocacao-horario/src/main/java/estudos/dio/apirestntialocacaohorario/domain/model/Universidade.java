@@ -9,8 +9,9 @@ public class Universidade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy ="universidade", cascade = CascadeType.ALL)
     private List<Curso> cursos;
+
 
     public Universidade() {
     }

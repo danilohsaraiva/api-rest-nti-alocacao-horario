@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public record UniversidadeDto(String nome, List<CursoDto> cursosDto) {
+public record UniversidadeDto(String nome, List<CursoDto> cursos) {
     public UniversidadeDto(Universidade universidade) {
         this(
                 universidade.getNome(),
@@ -19,7 +19,7 @@ public record UniversidadeDto(String nome, List<CursoDto> cursosDto) {
 
     public Universidade toModel() {
         Universidade universidade = new Universidade();
-        universidade.setCursos(Optional.ofNullable(this.cursosDto).orElse(Collections.emptyList()).stream().map(CursoDto::toModel).collect(Collectors.toList()));
+        universidade.setCursos(Optional.ofNullable(this.cursos).orElse(Collections.emptyList()).stream().map(CursoDto::toModel).collect(Collectors.toList()));
         universidade.setNome(this.nome);
         return universidade;
     }

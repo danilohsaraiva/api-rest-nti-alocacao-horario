@@ -13,9 +13,22 @@ public class PreferenciaGrade {
     private String dia;
     @ElementCollection
     private List<String> horariosPreferiveis = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "professor_id")
+    private Professor professor;
+
+
 
     public PreferenciaGrade() {
 
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
     public Long getId() {
