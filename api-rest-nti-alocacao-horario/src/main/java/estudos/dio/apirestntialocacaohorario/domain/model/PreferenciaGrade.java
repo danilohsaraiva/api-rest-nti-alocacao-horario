@@ -1,9 +1,15 @@
 package estudos.dio.apirestntialocacaohorario.domain.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity(name = "tb_preferencia")
 public class PreferenciaGrade {
@@ -17,41 +23,4 @@ public class PreferenciaGrade {
     @JoinColumn(name = "professor_id")
     private Professor professor;
 
-
-
-    public PreferenciaGrade() {
-
-    }
-
-    public Professor getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDia() {
-        return dia;
-    }
-
-    public void setDia(String dia) {
-        this.dia = dia;
-    }
-
-    public List<String> getHorariosPreferiveis() {
-        return horariosPreferiveis;
-    }
-
-    public void setHorariosPreferiveis(List<String> horariosPreferiveis) {
-        this.horariosPreferiveis = horariosPreferiveis;
-    }
 }

@@ -55,14 +55,14 @@ Professor --|> PreferenciaGrade
 ```
 
 ### Definições
-#### API
+### API
 Acrônimo para Application Programming Interface é um recurso que permite a comunicação entre softwares e plataformas utilizando um conjunto de definições e protocolos.
 Onde é disponibilizado uma interface para que outros possam consumir determinado serviço, sem ter a preocupação com sua implementação.
 
-#### Padrão REST
+### Padrão REST
 API REST é uma API que se adéqua aos princípios de design do REST ou o estilo de arquitetura do Representational State Transfer.
 
-##### 6 Principais Princípios de Design REST
+### 6 Principais Princípios de Design REST
 
 | Interface Uniforme                                                                                     | Desacoplamento do cliente-servidor                                                                                                                      | Sem estado definido                                                                                              |
 |--------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
@@ -77,15 +77,16 @@ API REST é uma API que se adéqua aos princípios de design do REST ou o estilo
 | O objetivo é melhorar o desempenho do cliente, além de aumentar a escalabilidade do servidor.                  | Precisam ser projetadas para que nem o cliente e nem o servidor possam dizer se ele se comunica com o aplicativo final ou um intermediário.                                          |                                                                                                                                                    |
 
 Para mais informações a respeito de API segue o [link](https://www.ibm.com/br-pt/topics/rest-apis#:~:text=O%20%C3%BAnico%20requisito%20%C3%A9%20que%20eles%20devem%20alinhar,camadas.%20...%206%20C%C3%B3digo%20sob%20demanda%20%28opcional%29.%20) 👈
-### Ferramentas utilizadas
-#### Spring Framework
+## Ferramentas utilizadas
+### ⚙ Spring Framework
 Um ecossistema de desenvolvimento para facilitar a criação de aplicações Java, baseado nos padrões de projetos de inversão de controle (IoC) e injeção de dependência.<br>
-#### Spring Boot
+####Spring Boot
 Abstrair a complexibilidade e facilitar na configuração de nossas dependência<br>
 Site: [spring initializr](https://start.spring.io/)
 ![img_1.png](img_1.png)
-#### H2 DataBase (dependência)
+### ⚙ H2 DataBase (dependência)
 Este recurso nos possibilita trabalhar com banco de dados em memória mediante a configuração<br>
+Otímo recurso para se usar em tempo de desenvolvimento.
 
 
 ````
@@ -110,23 +111,51 @@ A estrutura acima diz respeito a configuração de um arquivo aplication.propert
 
 URL de acesso ao banco h2, levando em conta a configuração acima: localhost:port/path<br>
 port por default  é 8080 e o path foi passado por configuração;
-#### Open API
+
+### ⚙ Open API
 É uma biblioteca que auxilia na criação de documentação e testes de nossa API, através da  integração entre Spring Boot e Swagger<br>
 Documentação [OpenAPI](https://github.com/springdoc/springdoc-openapi) 👈
 
+### ⚙ [Lombok]()
+Framework Java que abstraí a verbosidade do código ao se utilizar notações, permitindo gerar métodos em tempo de compilação, por exemplo:
+
+```java
+// Desta maneira é dispensando a criação manual dos métodos getters e setters
+// Para mais informações consulte a documentação
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class Exemplo {
+    private String atributo1;
+    private String atributo2;
+}
+```
+
+
 #### [Raiway](https://railway.app/new) 
 
+## 📚 Conceitos
+### 📙 Estrutura em 3 camadas
 
-#### 📙 Estrutura em 3 camadas
-
-##### Controller 
+#### Controller 
 Referente a API, onde disponibilizamos os endpoints, métodos HTTP, a comunicação com os DTOs, os status HTTP etc...
 
-##### Service
+#### Service
 Possuí nossas  regras de negócio, em suma é onde definimos como cada processo ocorre dentro de nossa aplicação.
 
-##### Repository (DAO, "Data Access Object")
+#### Repository (DAO, "Data Access Object")
 Se comunica com o banco de dados a fim de persistir os mesmos.
+
+### 📙Camada DTO (Data Transfer Object)
+É um objeto que define como os dados serão enviados pela rede<br>
+Exemplo de Beneficíos:
+- Ocultar propriedades específicas que o cliente não deve exibir.
+- Omitir propriedades para diminuir o tamanho da carga
+- Desacoplar a camada de serviço da camada de banco de dados, entre outros...
+
 
 
 
