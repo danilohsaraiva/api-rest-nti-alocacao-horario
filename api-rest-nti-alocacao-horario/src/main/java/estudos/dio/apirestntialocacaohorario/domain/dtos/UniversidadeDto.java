@@ -1,8 +1,5 @@
 package estudos.dio.apirestntialocacaohorario.domain.dtos;
 
-import estudos.dio.apirestntialocacaohorario.domain.model.Curso;
-import estudos.dio.apirestntialocacaohorario.domain.model.Universidade;
-import estudos.dio.apirestntialocacaohorario.domain.service.impl.CursoServiceImpl;
 import lombok.Data;
 
 import java.io.Serializable;

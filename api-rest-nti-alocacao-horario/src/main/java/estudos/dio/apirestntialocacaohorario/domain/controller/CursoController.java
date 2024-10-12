@@ -8,7 +8,6 @@ import estudos.dio.apirestntialocacaohorario.domain.service.impl.GradeCursoServi
 import estudos.dio.apirestntialocacaohorario.domain.service.impl.SemestreServiceImpl;
 import estudos.dio.apirestntialocacaohorario.domain.service.impl.UniversidadeServiceImpl;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -34,29 +33,28 @@ public class CursoController {
     }
 
     //Expor um DTO a quem está consumindo da API
-    @GetMapping("/{id}")
+    @GetMapping("curso/id/{id}")
     public ResponseEntity<Curso> findById(@PathVariable Long id) {
         var cursoDb = cursoService.findByID(id);
         return ResponseEntity.ok(cursoDb);
     }
+
     @PostMapping
-    public ResponseEntity<Curso> create(@RequestBody @Valid CursoDto curso) {
+    public ResponseEntity<Curso> create(@RequestBody CursoDto curso) {
 
-        Curso cursoCriar = curso.toModel(semestreService, universidadeService,gradeCursoService);
-
-        cursoService.create(cursoCriar);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cursoCriar.getIdCurso()).toUri();
-        return ResponseEntity.created(location).body(cursoCriar);
+        var cursoParaCriar = cursoService.create(curso);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cursoParaCriar.getIdCurso()).toUri();
+        return ResponseEntity.created(location).body(cursoParaCriar);
     }
 
     @GetMapping("/todos")
     public ResponseEntity<List<Curso>> findAll() {
-         List<Curso> cursos = new ArrayList<>();
-         cursos.addAll(cursoService.findAll());
-         return ResponseEntity.ok(cursos);
+        List<Curso> cursos = new ArrayList<>();
+        cursos.addAll(cursoService.findAll());
+        return ResponseEntity.ok(cursos);
     }
 
-    @GetMapping("/{nome}")
+    @GetMapping("curso/nome/{nome}")
     public ResponseEntity findByNome(@PathVariable String nome) {
         var cursoDB = cursoService.findByNome(nome);
         return ResponseEntity.ok(cursoDB);

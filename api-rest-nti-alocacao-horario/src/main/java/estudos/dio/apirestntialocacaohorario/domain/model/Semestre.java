@@ -11,7 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "tb_semestre")
-
 public class Semestre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

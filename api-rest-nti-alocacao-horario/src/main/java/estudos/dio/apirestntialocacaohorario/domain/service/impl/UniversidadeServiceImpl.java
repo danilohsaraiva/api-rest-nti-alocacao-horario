@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+
 @Service
 public class UniversidadeServiceImpl implements UniversidadeService {
     private final UniversidadeRepositorio universidadeRepositorio;
@@ -19,6 +20,7 @@ public class UniversidadeServiceImpl implements UniversidadeService {
         this.universidadeRepositorio = universidadeRepositorio;
         this.cursoRepositorio = cursoRepositorio;
     }
+
     @Override
     public Universidade findById(Long id) {
         return universidadeRepositorio.findById(id).orElseThrow(NoSuchElementException::new);
@@ -36,7 +38,7 @@ public class UniversidadeServiceImpl implements UniversidadeService {
         universidade.setCategoriaAdministrativaUniversidade(universidadeDto.getCategoriaAdministrativaUniversidade());
         universidade.setCredencialUniversidade(universidadeDto.getCredencialUniversidade());
 
-        if(universidadeDto.getListaIdCursos() != null && !universidadeDto.getListaIdCursos().isEmpty()) {
+        if (universidadeDto.getListaIdCursos() != null && !universidadeDto.getListaIdCursos().isEmpty()) {
             List<Curso> cursos = cursoRepositorio.findAllByIdCursoIn(universidadeDto.getListaIdCursos());
             universidade.setListaCursos(cursos);
         }

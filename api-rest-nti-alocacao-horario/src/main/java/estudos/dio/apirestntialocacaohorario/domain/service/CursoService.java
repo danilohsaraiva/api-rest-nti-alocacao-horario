@@ -1,5 +1,6 @@
 package estudos.dio.apirestntialocacaohorario.domain.service;
 
+import estudos.dio.apirestntialocacaohorario.domain.dtos.CursoDto;
 import estudos.dio.apirestntialocacaohorario.domain.model.Curso;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 public interface CursoService {
     Curso findByID(Long id);
 
-    Curso create(Curso cursoParaCriar);
+    Curso create(CursoDto cursoDto);
 
     List<Curso> findAll();
 

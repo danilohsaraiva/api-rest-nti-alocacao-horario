@@ -24,13 +24,13 @@ public class UniversidadeController {
         this.cursoService = cursoService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/curso/id/{id}")
     public ResponseEntity<Universidade> findById(@PathVariable Long id) {
         return ResponseEntity.ok(universidadeService.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Universidade> create (@RequestBody @Valid UniversidadeDto universidadeDto) {
+    public ResponseEntity<Universidade> create(@RequestBody @Valid UniversidadeDto universidadeDto) {
 
         var universidadeParaCriar = universidadeService.create(universidadeDto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(universidadeParaCriar.getIdUniversidade()).toUri();

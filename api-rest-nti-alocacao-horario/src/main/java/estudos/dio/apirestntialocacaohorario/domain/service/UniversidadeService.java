@@ -5,5 +5,6 @@ import estudos.dio.apirestntialocacaohorario.domain.model.Universidade;
 
 public interface UniversidadeService {
     public Universidade findById(Long id);
+
     public Universidade create(UniversidadeDto universidadeDto);
 }

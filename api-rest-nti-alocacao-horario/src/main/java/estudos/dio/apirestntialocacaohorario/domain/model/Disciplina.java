@@ -12,7 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "tb_disciplina")
-
 public class Disciplina implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package estudos.dio.apirestntialocacaohorario.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "tb_curso")
-
 public class Curso {
 
     @Id
@@ -20,6 +20,7 @@ public class Curso {
 
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "universidade_id")
     private Universidade universidade;
     private String nomeCurso;
