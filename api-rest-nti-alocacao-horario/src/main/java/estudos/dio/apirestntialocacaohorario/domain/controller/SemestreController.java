@@ -1,14 +1,9 @@
 package estudos.dio.apirestntialocacaohorario.domain.controller;
 
-import estudos.dio.apirestntialocacaohorario.domain.dtos.SemestreDto;
-import estudos.dio.apirestntialocacaohorario.domain.model.Semestre;
 import estudos.dio.apirestntialocacaohorario.domain.service.SemestreService;
 import estudos.dio.apirestntialocacaohorario.domain.service.impl.SemestreServiceImpl;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/semestre")

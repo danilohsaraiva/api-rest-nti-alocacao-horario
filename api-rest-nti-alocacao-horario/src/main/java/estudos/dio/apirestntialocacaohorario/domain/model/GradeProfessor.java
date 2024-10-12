@@ -1,12 +1,9 @@
 package estudos.dio.apirestntialocacaohorario.domain.model;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.List;
-import java.util.Map;
 @Data
 
 @Entity(name = "tb_grade_professor")

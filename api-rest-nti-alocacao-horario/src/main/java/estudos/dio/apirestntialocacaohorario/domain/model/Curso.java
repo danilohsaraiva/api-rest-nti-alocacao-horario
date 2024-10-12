@@ -1,9 +1,10 @@
 package estudos.dio.apirestntialocacaohorario.domain.model;
 
-import estudos.dio.apirestntialocacaohorario.domain.dtos.CursoDto;
-import estudos.dio.apirestntialocacaohorario.domain.dtos.UniversidadeDto;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Data

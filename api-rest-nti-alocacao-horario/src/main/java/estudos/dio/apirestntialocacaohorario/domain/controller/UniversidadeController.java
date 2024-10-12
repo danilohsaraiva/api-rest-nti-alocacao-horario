@@ -1,14 +1,9 @@
 package estudos.dio.apirestntialocacaohorario.domain.controller;
 
-import estudos.dio.apirestntialocacaohorario.domain.dtos.UniversidadeDto;
-import estudos.dio.apirestntialocacaohorario.domain.model.Universidade;
 import estudos.dio.apirestntialocacaohorario.domain.service.UniversidadeService;
 import estudos.dio.apirestntialocacaohorario.domain.service.impl.UniversidadeServiceImpl;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/universidade")

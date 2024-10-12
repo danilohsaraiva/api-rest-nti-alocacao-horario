@@ -1,17 +1,9 @@
 package estudos.dio.apirestntialocacaohorario.domain.controller;
 
-import estudos.dio.apirestntialocacaohorario.domain.dtos.ProfessorDto;
-import estudos.dio.apirestntialocacaohorario.domain.model.Professor;
 import estudos.dio.apirestntialocacaohorario.domain.service.ProfessorService;
 import estudos.dio.apirestntialocacaohorario.domain.service.impl.ProfessorServiceImpl;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import jakarta.validation.Valid;
-import org.apache.coyote.Response;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/professor")
