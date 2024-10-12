@@ -4,7 +4,7 @@ import estudos.dio.apirestntialocacaohorario.domain.dtos.UniversidadeDto;
 import estudos.dio.apirestntialocacaohorario.domain.model.Universidade;
 
 public interface UniversidadeService {
-    public Universidade findById(Long id);
+    Universidade findById(Long id);
 
-    public Universidade create(UniversidadeDto universidadeDto);
+    Universidade create(UniversidadeDto universidadeDto);
 }
