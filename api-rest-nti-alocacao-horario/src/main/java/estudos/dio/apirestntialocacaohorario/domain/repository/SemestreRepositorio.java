@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface SemestreRepositorio extends JpaRepository<Semestre, Long> {
-    public List<Semestre> findAllByIdSemestreIn(List<Long> ids);
+    List<Semestre> findAllByIdSemestreIn(List<Long> ids);
 }

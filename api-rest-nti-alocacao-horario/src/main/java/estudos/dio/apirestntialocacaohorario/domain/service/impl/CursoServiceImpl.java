@@ -54,7 +54,7 @@ public class CursoServiceImpl implements CursoService {
             curso.setListaSemestres(semestreRepositorio.findAllByIdSemestreIn(cursoDto.getListaIdSemestres()));
         }
         List<Semestre> semestres = semestreRepositorio.findAllByIdSemestreIn(cursoDto.getListaIdSemestres());
-        if (semestres.isEmpty() || semestres == null) {
+        if (semestres.isEmpty()) {
             semestres = Collections.emptyList();
         }
         curso.setListaSemestres(semestres);
@@ -88,7 +88,7 @@ public class CursoServiceImpl implements CursoService {
 
     @Override
     public Curso findByNome(String nome) {
-        Curso curso = cursoRepositorio.findByNomeCurso(nome);
+        Curso curso = cursoRepositorio.findByNomeCurso();
         return curso;
     }
 
