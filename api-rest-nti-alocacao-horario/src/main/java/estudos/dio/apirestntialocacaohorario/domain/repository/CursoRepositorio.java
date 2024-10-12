@@ -12,4 +12,6 @@ public interface CursoRepositorio extends JpaRepository<Curso, Long> {
     public Curso findByNomeCurso(String nome);
 
     public boolean existsByNomeCurso(String nome);
+
+    List<Curso> findAllByIdCursoIn(List<Long> ids);
 }

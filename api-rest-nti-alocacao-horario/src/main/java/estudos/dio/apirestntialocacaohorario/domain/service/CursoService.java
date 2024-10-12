@@ -15,4 +15,6 @@ public interface CursoService {
 
     Curso delete(Long id);
 
+    List<Curso> findByIdList(List<Long> listaIdCursos);
+
 }

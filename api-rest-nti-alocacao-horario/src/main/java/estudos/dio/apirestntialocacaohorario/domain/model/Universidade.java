@@ -18,10 +18,10 @@ public class Universidade {
     private Long idUniversidade;
     private String nomeUniversidade;
     private String siglaUniversidade;
-    private String ufUiversidade;
+    private String ufUniversidade;
     private String municipioUniversidade;
     private String categoriaAdministrativaUniversidade; //publica ou privada
-    private String credenciaisUniversidade; //EAD, presencial
+    private String credencialUniversidade; //EAD, presencial
     @OneToMany(mappedBy = "universidade", cascade = CascadeType.ALL)
     private List<Curso> listaCursos;
 }

@@ -41,6 +41,11 @@ public class CursoServiceImpl implements CursoService {
         return dbCurso;
     }
 
+    @Override
+    public List<Curso> findByIdList(List<Long> listaIdCursos) {
+        return cursoRepositorio.findAllByIdCursoIn(listaIdCursos);
+    }
+
     public Curso findByNome(String nome) {
         Curso curso = cursoRepositorio.findByNomeCurso(nome);
         return  curso;
