@@ -13,4 +13,6 @@ public interface CursoService {
 
     Curso findByNome(String nome);
 
+    Curso delete(Long id);
+
 }

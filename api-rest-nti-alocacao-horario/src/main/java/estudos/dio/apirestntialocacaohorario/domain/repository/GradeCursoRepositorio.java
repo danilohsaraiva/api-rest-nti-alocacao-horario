@@ -1,10 +1,10 @@
 package estudos.dio.apirestntialocacaohorario.domain.repository;
 
-import estudos.dio.apirestntialocacaohorario.domain.model.Semestre;
+import estudos.dio.apirestntialocacaohorario.domain.model.GradeCurso;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SemestreRepositorio extends JpaRepository<Semestre, Long> {
+public interface GradeCursoRepositorio extends JpaRepository<GradeCurso, Long> {
 
 }

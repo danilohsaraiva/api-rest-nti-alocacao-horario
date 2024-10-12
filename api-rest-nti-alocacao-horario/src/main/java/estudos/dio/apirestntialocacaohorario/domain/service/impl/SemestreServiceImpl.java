@@ -5,6 +5,7 @@ import estudos.dio.apirestntialocacaohorario.domain.repository.SemestreRepositor
 import estudos.dio.apirestntialocacaohorario.domain.service.SemestreService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 @Service
 public class SemestreServiceImpl implements SemestreService {
@@ -20,9 +21,16 @@ public class SemestreServiceImpl implements SemestreService {
 
     @Override
     public Semestre create(Semestre semestre) {
-        if(semestre.getId() != null && semestreRepositorio.existsById(semestre.getId())) {
+        if(semestre.getIdSemestre() != null && semestreRepositorio.existsById(semestre.getIdSemestre())) {
             throw new IllegalArgumentException("ID já existe");
         }
         return semestreRepositorio.save(semestre);
     }
+
+    @Override
+    public List<Semestre> findAllById(List<Long> ids) {
+        if(ids != null) return semestreRepositorio.findAllById(ids);
+        return null;
+    }
+
 }

@@ -1,34 +1,34 @@
 package estudos.dio.apirestntialocacaohorario.domain.dtos;
 
-import com.fasterxml.jackson.databind.introspect.TypeResolutionContext;
 import estudos.dio.apirestntialocacaohorario.domain.model.Curso;
-import estudos.dio.apirestntialocacaohorario.domain.model.Semestre;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import estudos.dio.apirestntialocacaohorario.domain.service.impl.GradeCursoServiceImpl;
+import estudos.dio.apirestntialocacaohorario.domain.service.impl.SemestreServiceImpl;
+import estudos.dio.apirestntialocacaohorario.domain.service.impl.UniversidadeServiceImpl;
 
-import java.util.Collections;
+import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
-public record CursoDto( String nomeCurso,  List<SemestreDto> semestres) {
+public class CursoDto implements Serializable {
 
     //@NotBlank e @NotNull
+    private Long universidadeId;
+    private String nomeCurso;
+    private String anoInicioCurso;
+    private String anoFimCurso;
+    private Long gradeCursoId;
+    private List<Long> listaIdSemestres;
 
-    public  CursoDto(Curso curso) {
-        this(
-                curso.getNome(),
-                Optional.ofNullable(curso.getSemestres()).orElse(Collections.emptyList()).stream().map(SemestreDto::new).collect(Collectors.toList())
-        );
-    }
+    public Curso toModel(SemestreServiceImpl semestreService, UniversidadeServiceImpl universidadeService, GradeCursoServiceImpl gradeCurso) {
 
-    public Curso toModel() {
         Curso curso = new Curso();
-        curso.setNome(this.nomeCurso);
-        curso.setSemestres(Optional.ofNullable(this.semestres).orElse(Collections.emptyList()).stream().map(SemestreDto::toModel).collect(Collectors.toList()));
+
+        curso.setAnoFimCurso(anoFimCurso);
+        curso.setAnoInicioCurso(anoInicioCurso);
+
+        curso.setUniversidade(universidadeService.findById(universidadeId));
+        curso.setListaSemestres(semestreService.findAllById(listaIdSemestres));
+        curso.setGradeCurso(gradeCurso.findById(gradeCursoId));
+
         return curso;
     }
 }
-
-
-

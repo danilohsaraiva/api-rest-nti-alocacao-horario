@@ -21,7 +21,7 @@ public class ProfessorServiceImpl implements ProfessorService {
 
     @Override
     public Professor create(Professor professorParaCriar) {
-        if(professorParaCriar.getId() != null && professorRepositorio.existsById(professorParaCriar.getId())) {
+        if(professorParaCriar.getIdProfessor() != null && professorRepositorio.existsById(professorParaCriar.getIdProfessor())) {
             throw new IllegalArgumentException("ID já existe!");
         }
         var professorCriado = professorRepositorio.save(professorParaCriar);

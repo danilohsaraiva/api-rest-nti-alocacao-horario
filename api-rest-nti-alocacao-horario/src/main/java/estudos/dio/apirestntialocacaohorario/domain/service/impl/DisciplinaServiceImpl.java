@@ -22,7 +22,7 @@ public class DisciplinaServiceImpl implements DisciplinaService {
 
     @Override
     public Disciplina create(Disciplina disciplinaParaCriar) {
-        if(disciplinaParaCriar.getId() != null && disciplinaRepositorio.existsById(disciplinaParaCriar.getId())) {
+        if(disciplinaParaCriar.getIdDisciplina() != null && disciplinaRepositorio.existsById(disciplinaParaCriar.getIdDisciplina())) {
             throw  new IllegalArgumentException("ID já existe");
         }
         Disciplina disciplinaNova = disciplinaRepositorio.save(disciplinaParaCriar);

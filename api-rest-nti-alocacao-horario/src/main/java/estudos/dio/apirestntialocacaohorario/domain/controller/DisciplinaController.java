@@ -5,10 +5,7 @@ import estudos.dio.apirestntialocacaohorario.domain.model.Disciplina;
 import estudos.dio.apirestntialocacaohorario.domain.service.DisciplinaService;
 import estudos.dio.apirestntialocacaohorario.domain.service.impl.DisciplinaServiceImpl;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -18,7 +15,7 @@ import java.net.URI;
 public class DisciplinaController {
     private final DisciplinaService disciplinaService;
 
-    public DisciplinaController(DisciplinaService disciplinaService) {
+    public DisciplinaController(DisciplinaServiceImpl disciplinaService) {
         this.disciplinaService = disciplinaService;
     }
 
@@ -27,8 +24,13 @@ public class DisciplinaController {
 
         Disciplina disciplinaParaCriar = disciplinaService.create(disciplinaDto.toModel());
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(disciplinaParaCriar.getId()).toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(disciplinaParaCriar.getIdDisciplina()).toUri();
 
         return ResponseEntity.created(location).body(disciplinaParaCriar);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Disciplina> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(disciplinaService.findById(id));
     }
 }

@@ -4,6 +4,9 @@ import estudos.dio.apirestntialocacaohorario.domain.dtos.CursoDto;
 import estudos.dio.apirestntialocacaohorario.domain.model.Curso;
 import estudos.dio.apirestntialocacaohorario.domain.service.CursoService;
 import estudos.dio.apirestntialocacaohorario.domain.service.impl.CursoServiceImpl;
+import estudos.dio.apirestntialocacaohorario.domain.service.impl.GradeCursoServiceImpl;
+import estudos.dio.apirestntialocacaohorario.domain.service.impl.SemestreServiceImpl;
+import estudos.dio.apirestntialocacaohorario.domain.service.impl.UniversidadeServiceImpl;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +22,15 @@ import java.util.List;
 @Transactional
 public class CursoController {
     private final CursoService cursoService;
+    private final UniversidadeServiceImpl universidadeService;
+    private final SemestreServiceImpl semestreService;
+    private final GradeCursoServiceImpl gradeCursoService;
 
-    public CursoController(CursoServiceImpl cursoService) {
+    public CursoController(CursoServiceImpl cursoService, UniversidadeServiceImpl universidadeService, SemestreServiceImpl semestreService, GradeCursoServiceImpl gradeCursoService) {
         this.cursoService = cursoService;
+        this.universidadeService = universidadeService;
+        this.semestreService = semestreService;
+        this.gradeCursoService = gradeCursoService;
     }
 
     //Expor um DTO a quem está consumindo da API
@@ -33,9 +42,10 @@ public class CursoController {
     @PostMapping
     public ResponseEntity<Curso> create(@RequestBody @Valid CursoDto curso) {
 
-        Curso cursoCriar = curso.toModel();
+        Curso cursoCriar = curso.toModel(semestreService, universidadeService,gradeCursoService);
+
         cursoService.create(cursoCriar);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cursoCriar.getId()).toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cursoCriar.getIdCurso()).toUri();
         return ResponseEntity.created(location).body(cursoCriar);
     }
 

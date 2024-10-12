@@ -5,8 +5,7 @@ import lombok.*;
 
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "tb_semestre")
@@ -14,11 +13,11 @@ import java.util.List;
 public class Semestre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private int ano;
-    private int semestreNumero;
+    private Long idSemestre;
+    private int anoSemestre;
+    private int numeroSemestre;
     @OneToMany(mappedBy = "semestre", cascade = CascadeType.ALL)
-    private List<Disciplina> disciplinas;
+    private List<Disciplina> listaDisciplinas;
     @ManyToOne
     @JoinColumn(name = "curso_id")
     private Curso curso;

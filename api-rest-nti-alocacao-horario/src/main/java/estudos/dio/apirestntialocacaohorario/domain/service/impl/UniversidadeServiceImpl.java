@@ -20,7 +20,7 @@ public class UniversidadeServiceImpl implements UniversidadeService {
 
     @Override
     public Universidade create(Universidade universidade) {
-        if(universidade.getId() != null && universidadeRepositorio.existsById(universidade.getId())) {
+        if(universidade.getIdUniversidade() != null && universidadeRepositorio.existsById(universidade.getIdUniversidade())) {
             throw new IllegalArgumentException("ID já existe!");
         }
         return universidadeRepositorio.save(universidade);

@@ -2,25 +2,21 @@ package estudos.dio.apirestntialocacaohorario.domain.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-
-@Entity(name = "tb_preferencia")
-public class PreferenciaGrade {
+@MappedSuperclass
+@SuperBuilder
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Grade implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String dia;
-    @ElementCollection
-    private List<String> horariosPreferiveis = new ArrayList<>();
-    @ManyToOne
-    @JoinColumn(name = "professor_id")
-    private Professor professor;
-
 }

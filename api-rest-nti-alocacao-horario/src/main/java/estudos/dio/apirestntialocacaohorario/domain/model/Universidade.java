@@ -5,8 +5,7 @@ import lombok.*;
 
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "tb_universidade")
@@ -14,8 +13,13 @@ import java.util.List;
 public class Universidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nome;
+    private Long idUniversidade;
+    private String nomeUniversidade;
+    private String siglaUniversidade;
+    private String ufUiversidade;
+    private String municipioUniversidade;
+    private String categoriaAdministrativaUniversidade; //publica ou privada
+    private String credenciaisUniversidade; //EAD, presencial
     @OneToMany(mappedBy = "universidade", cascade = CascadeType.ALL)
-    private List<Curso> cursos;
+    private List<Curso> listaCursos;
 }
