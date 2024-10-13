@@ -8,11 +8,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+
 @Data
 @Entity(name = "tb_grade_curso")
 @NoArgsConstructor
 @AllArgsConstructor
-public class GradeCurso extends Grade{
+public class GradeCurso extends Grade {
 
     private int periodoCurso;
     @OneToOne
