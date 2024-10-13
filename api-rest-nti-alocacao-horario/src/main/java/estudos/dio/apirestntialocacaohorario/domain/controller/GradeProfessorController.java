@@ -10,7 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/preferencia-grade")
+@RequestMapping("/grade_professor")
 public class GradeProfessorController {
     private final GradeProfessorServiceImpl preferenciaGradeService;
 

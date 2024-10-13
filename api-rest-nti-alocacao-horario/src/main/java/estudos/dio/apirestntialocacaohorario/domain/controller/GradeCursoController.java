@@ -1,21 +1,20 @@
 package estudos.dio.apirestntialocacaohorario.domain.controller;
 
+import estudos.dio.apirestntialocacaohorario.domain.dtos.GradeCursoDTO;
 import estudos.dio.apirestntialocacaohorario.domain.model.GradeCurso;
 import estudos.dio.apirestntialocacaohorario.domain.service.impl.CursoServiceImpl;
 import estudos.dio.apirestntialocacaohorario.domain.service.impl.DisciplinaServiceImpl;
 import estudos.dio.apirestntialocacaohorario.domain.service.impl.GradeCursoServiceImpl;
 import jakarta.transaction.Transactional;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/gradeCurso")
+@RequestMapping("/grade_curso")
 @Transactional
 public class GradeCursoController {
     private final GradeCursoServiceImpl gradeCursoService;
@@ -26,6 +25,13 @@ public class GradeCursoController {
         this.gradeCursoService = gradeCursoService;
         this.cursoService = cursoService;
         this.disciplinaService = disciplinaService;
+    }
+
+    @PostMapping
+    public ResponseEntity<GradeCurso> create(@RequestBody GradeCursoDTO gradeCursoDTO) {
+        GradeCurso gradeCurso = new GradeCurso();
+
+        return ResponseEntity.ok(gradeCurso);
     }
 
 

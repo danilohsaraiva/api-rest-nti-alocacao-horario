@@ -22,7 +22,7 @@ public class DisciplinaController {
     @PostMapping()
     public ResponseEntity<Disciplina> create(@RequestBody DisciplinaDto disciplinaDto) {
 
-        Disciplina disciplinaParaCriar = disciplinaService.create(disciplinaDto.toModel());
+        Disciplina disciplinaParaCriar = disciplinaService.create(disciplinaDto);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(disciplinaParaCriar.getIdDisciplina()).toUri();
 

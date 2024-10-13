@@ -12,7 +12,7 @@ import estudos.dio.apirestntialocacaohorario.domain.repository.UniversidadeRepos
 import estudos.dio.apirestntialocacaohorario.domain.service.CursoService;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -39,6 +39,7 @@ public class CursoServiceImpl implements CursoService {
     public Curso create(CursoDto cursoDto) {
 
         Curso curso = new Curso();
+        GradeCurso gradeCurso = new GradeCurso();
 
         curso.setNomeCurso(cursoDto.getNomeCurso());
 
@@ -50,16 +51,18 @@ public class CursoServiceImpl implements CursoService {
             curso.setUniversidade(universidade);
         }
 
-        if (cursoDto.getListaIdSemestres() != null && !cursoDto.getListaIdSemestres().isEmpty()) {
-            curso.setListaSemestres(semestreRepositorio.findAllByIdSemestreIn(cursoDto.getListaIdSemestres()));
-        }
         List<Semestre> semestres = semestreRepositorio.findAllByIdSemestreIn(cursoDto.getListaIdSemestres());
         if (semestres.isEmpty()) {
-            semestres = Collections.emptyList();
+            semestres = new ArrayList<>();
         }
-        curso.setListaSemestres(semestres);
 
-        GradeCurso gradeCurso = gradeCursoRepositorio.findById(cursoDto.getGradeCursoId().longValue()).orElse(null);
+
+        curso.setListaSemestres(semestres);
+        if (cursoDto.getGradeCursoId() != null) {
+            gradeCurso = gradeCursoRepositorio.findById(cursoDto.getGradeCursoId().longValue()).orElse(null);
+        } else {
+            gradeCurso = null;
+        }
 
         curso.setGradeCurso(gradeCurso);
 
@@ -88,8 +91,7 @@ public class CursoServiceImpl implements CursoService {
 
     @Override
     public Curso findByNome(String nome) {
-        Curso curso = cursoRepositorio.findByNomeCurso();
+        Curso curso = cursoRepositorio.findByNomeCurso(nome);
         return curso;
     }
-
 }

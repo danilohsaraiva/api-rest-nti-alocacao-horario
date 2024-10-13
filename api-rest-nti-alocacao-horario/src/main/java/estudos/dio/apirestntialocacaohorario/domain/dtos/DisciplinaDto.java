@@ -1,14 +1,15 @@
 package estudos.dio.apirestntialocacaohorario.domain.dtos;
 
-import estudos.dio.apirestntialocacaohorario.domain.model.Disciplina;
+import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
+@Data
 public class DisciplinaDto implements Serializable {
+    private String nomeDisciplina;
+    private int cargaHorariaDisciplina;
+    private List<Long> idsProfessores;
+    private Long idSemestre;
 
-    public Disciplina toModel() {
-        Disciplina disciplina = new Disciplina();
-        return disciplina;
-
-    }
 }
