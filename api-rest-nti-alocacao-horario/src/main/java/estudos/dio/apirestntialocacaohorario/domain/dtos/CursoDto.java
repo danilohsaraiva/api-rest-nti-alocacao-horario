@@ -16,5 +16,6 @@ public class CursoDto implements Serializable {
     private String anoFimCurso;
     private Long gradeCursoId;
     private List<Long> listaIdSemestres = new ArrayList<>();
+    private List<Long> listaIdsDisciplinas = new ArrayList<>();
 
 }

@@ -1,14 +1,8 @@
 package estudos.dio.apirestntialocacaohorario.domain.service.impl;
 
 import estudos.dio.apirestntialocacaohorario.domain.dtos.CursoDto;
-import estudos.dio.apirestntialocacaohorario.domain.model.Curso;
-import estudos.dio.apirestntialocacaohorario.domain.model.GradeCurso;
-import estudos.dio.apirestntialocacaohorario.domain.model.Semestre;
-import estudos.dio.apirestntialocacaohorario.domain.model.Universidade;
-import estudos.dio.apirestntialocacaohorario.domain.repository.CursoRepositorio;
-import estudos.dio.apirestntialocacaohorario.domain.repository.GradeCursoRepositorio;
-import estudos.dio.apirestntialocacaohorario.domain.repository.SemestreRepositorio;
-import estudos.dio.apirestntialocacaohorario.domain.repository.UniversidadeRepositorio;
+import estudos.dio.apirestntialocacaohorario.domain.model.*;
+import estudos.dio.apirestntialocacaohorario.domain.repository.*;
 import estudos.dio.apirestntialocacaohorario.domain.service.CursoService;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +16,14 @@ public class CursoServiceImpl implements CursoService {
     private final GradeCursoRepositorio gradeCursoRepositorio;
     private final SemestreRepositorio semestreRepositorio;
     private final UniversidadeRepositorio universidadeRepositorio;
+    private final DisciplinaRepositorio disciplinaRepositorio;
 
-    public CursoServiceImpl(CursoRepositorio cursoRepositorio, GradeCursoRepositorio gradeCursoRepositorio, SemestreRepositorio semestreRepositorio, UniversidadeRepositorio universidadeRepositorio) {
+    public CursoServiceImpl(CursoRepositorio cursoRepositorio, GradeCursoRepositorio gradeCursoRepositorio, SemestreRepositorio semestreRepositorio, UniversidadeRepositorio universidadeRepositorio, DisciplinaRepositorio disciplinaRepositorio) {
         this.cursoRepositorio = cursoRepositorio;
         this.gradeCursoRepositorio = gradeCursoRepositorio;
         this.semestreRepositorio = semestreRepositorio;
         this.universidadeRepositorio = universidadeRepositorio;
+        this.disciplinaRepositorio = disciplinaRepositorio;
     }
 
     @Override
@@ -39,7 +35,8 @@ public class CursoServiceImpl implements CursoService {
     public Curso create(CursoDto cursoDto) {
 
         Curso curso = new Curso();
-        GradeCurso gradeCurso = new GradeCurso();
+        GradeCurso gradeCurso;
+
 
         curso.setNomeCurso(cursoDto.getNomeCurso());
 
@@ -52,7 +49,7 @@ public class CursoServiceImpl implements CursoService {
         }
 
         List<Semestre> semestres = semestreRepositorio.findAllByIdSemestreIn(cursoDto.getListaIdSemestres());
-        if (semestres.isEmpty()) {
+        if (semestres == null) {
             semestres = new ArrayList<>();
         }
 
@@ -66,6 +63,12 @@ public class CursoServiceImpl implements CursoService {
 
         curso.setGradeCurso(gradeCurso);
 
+        List<Disciplina> disciplinas = disciplinaRepositorio.findAllByIdDisciplinaIn(cursoDto.getListaIdsDisciplinas());
+        if (disciplinas == null) {
+            disciplinas = new ArrayList<>();
+        }
+
+        curso.setDisciplinas(disciplinas);
 
         curso.setAnoInicioCurso(cursoDto.getAnoInicioCurso());
         curso.setAnoFimCurso(cursoDto.getAnoFimCurso());

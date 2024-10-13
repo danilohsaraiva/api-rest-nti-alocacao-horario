@@ -11,5 +11,6 @@ public class DisciplinaDto implements Serializable {
     private int cargaHorariaDisciplina;
     private List<Long> idsProfessores;
     private Long idSemestre;
+    private List<Long> listaIdsCursos;
 
 }

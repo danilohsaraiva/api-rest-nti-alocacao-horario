@@ -1,9 +1,11 @@
 package estudos.dio.apirestntialocacaohorario.domain.service.impl;
 
 import estudos.dio.apirestntialocacaohorario.domain.dtos.DisciplinaDto;
+import estudos.dio.apirestntialocacaohorario.domain.model.Curso;
 import estudos.dio.apirestntialocacaohorario.domain.model.Disciplina;
 import estudos.dio.apirestntialocacaohorario.domain.model.Professor;
 import estudos.dio.apirestntialocacaohorario.domain.model.Semestre;
+import estudos.dio.apirestntialocacaohorario.domain.repository.CursoRepositorio;
 import estudos.dio.apirestntialocacaohorario.domain.repository.DisciplinaRepositorio;
 import estudos.dio.apirestntialocacaohorario.domain.repository.ProfessorRepositorio;
 import estudos.dio.apirestntialocacaohorario.domain.repository.SemestreRepositorio;
@@ -19,11 +21,13 @@ public class DisciplinaServiceImpl implements DisciplinaService {
     private final DisciplinaRepositorio disciplinaRepositorio;
     private final SemestreRepositorio semestreRepositorio;
     private final ProfessorRepositorio professorRepositorio;
+    private final CursoRepositorio cursoRepositorio;
 
-    public DisciplinaServiceImpl(DisciplinaRepositorio disciplinaRepositorio, SemestreRepositorio semestreRepositorio, ProfessorRepositorio professorRepositorio) {
+    public DisciplinaServiceImpl(DisciplinaRepositorio disciplinaRepositorio, SemestreRepositorio semestreRepositorio, ProfessorRepositorio professorRepositorio, CursoRepositorio cursoRepositorio) {
         this.disciplinaRepositorio = disciplinaRepositorio;
         this.semestreRepositorio = semestreRepositorio;
         this.professorRepositorio = professorRepositorio;
+        this.cursoRepositorio = cursoRepositorio;
     }
 
     @Override
@@ -51,6 +55,13 @@ public class DisciplinaServiceImpl implements DisciplinaService {
         } else {
             semestre = null;
         }
+
+        List<Curso> cursos = cursoRepositorio.findAllByIdCursoIn(disciplinaDto.getListaIdsCursos());
+        if (cursos == null) {
+            cursos = new ArrayList<>();
+        }
+
+        disciplina.setCursos(cursos);
 
 
         disciplina.setSemestre(semestre);
